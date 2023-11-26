@@ -22,7 +22,7 @@ def get_astra():
     keyspace = 'vectordb'
     table = 'embeddings'
     cloud_config = {'secure_connect_bundle': '/Users/jauneet.singh/Downloads/secure-connect-mydb.zip'}
-    auth_provider = PlainTextAuthProvider('pDTChYYSJhNXXAnvBwfuRaQR', 'banZ6KJQ0+OcuOIB6NS9t0vdtG8EpWvGgiuZ8,77Sy7D0sx+L-m8c_Aiy3vgAHe2LDBHvU6fup1zP6Q+SSSu-ozRpO2P+pZsOaARKqas,ZszybgQFYZOZgy3cM3P9Eop')
+    auth_provider = PlainTextAuthProvider('user', 'password')
     cluster = Cluster(cloud=cloud_config, auth_provider=auth_provider)
     session_astra = cluster.connect()
     return session_astra, keyspace
@@ -32,7 +32,7 @@ def setup_vectorstore():
     SOURCE_DIR = "/Users/jauneet.singh/Downloads/sources"
     FILE_SUFFIX = ".pdf"
 
-    embeddings = OpenAIEmbeddings(openai_api_key="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")
+    embeddings = OpenAIEmbeddings(openai_api_key="openapikey")
 
     pdf_loaders = [
         PyPDFLoader(pdf_name)
@@ -73,7 +73,7 @@ def setup_vectorstore():
 
 # Set up the LLM provider and embeddings
 def setup_llm_and_embeddings():
-    api_secret = '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'
+    api_secret = 'key'
     os.environ['OPENAI_API_KEY'] = api_secret
     openai_llm = OpenAI(temperature=0)
     embeddings = OpenAIEmbeddings()
